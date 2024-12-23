@@ -12,16 +12,18 @@ function closeModal() {
 
 // Scroll to Quiz Section and Show It
 function quizPage() {
-    const quizSection = document.getElementById("startquizsection");
+    // const quizSection = document.getElementById("startquizsection");
 
     // Show the Quiz Section
-    quizSection.classList.remove("hidden");
+    // quizSection.classList.remove("hidden");
 
     // Scroll to the Quiz Section
-    quizSection.scrollIntoView({ behavior: "smooth" });
+    // quizSection.scrollIntoView({ behavior: "smooth" });
 
     // Hide the Modal
-    document.getElementById("quizModal").classList.add("hidden");
+    // document.getElementById("quizModal").classList.add("hidden");
+
+    window.location = "../start-quize/index.html"
 }
 
 

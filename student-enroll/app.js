@@ -19,7 +19,11 @@ function showSignup() {
     signupTab.classList.remove('text-gray-500');
     loginTab.classList.add('text-gray-500');
     loginTab.classList.remove('text-gray-800', 'border-[#FF533A]');
+    signupTab.classList.remove('border-hidden');
 }
+
+
+
 
 function signup(e) {
     e.preventDefault();

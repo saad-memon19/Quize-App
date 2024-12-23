@@ -13,20 +13,22 @@
 
 <body>
   <!-- Header Section -->
+  <main class="container max-w-full">
+
   <header>
     <nav class="bg-white shadow-md shadow-gray-300 h-20">
       <div class="max-w-screen-xl flex items-center justify-between mx-auto px-4 h-full">
         <!-- Logo and Title -->
-        <a href="#" class="flex items-center space-x-3">
+        <a href="#" class="flex items-center">
           <img src="./assets/logo1.png" width="70px" 
-               class="mt-2" alt="Logo" />
+               class="mt-2 " alt="Logo" />
           <span class="animate__animated animate__flipInY self-center lg:text-3xl text-2xl font-bold whitespace-nowrap text-[#FF533A]">
-            Quiz <span class="text-[#00A97F]">Spark</span>
+            Quiz<span class="text-[#00A97F]">Spark</span>
           </span>
         </a>
         <!-- Enroll Button -->
         <button onclick="signupPage()" type="button" 
-                class="text-white bg-[#00A97F] hover:bg-[#FF533A] focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 shadow-lg transition duration-300">
+                class="text-white bg-[#00A97F] cursor-pointer hover:bg-[#FF533A] focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 shadow-lg transition duration-300">
           Enroll Now
         </button>
       </div>
@@ -46,7 +48,7 @@
         </p>
         <div class="mt-6">
           <a onclick="signupPage()"
-            class="inline-block px-6 py-3 text-lg font-medium tracking-wide text-white bg-[#00A97F] rounded-lg shadow-lg hover:bg-[#FF533A] transition-all duration-300">
+            class="cursor-pointer inline-block px-6 py-3 text-lg font-medium tracking-wide text-white bg-[#00A97F] rounded-lg shadow-lg hover:bg-[#FF533A] transition-all duration-300">
             Explore Now
           </a>
         </div>
@@ -63,8 +65,9 @@
       </div>
     </div>
   </section>
-  <footer class="bg-[#00A97F] py-2">
-    <div class="max-w-screen-xl mx-auto px-4 flex justify-evenly items-center text-white">
+
+  <footer class="bg-[#00A97F] py-">
+    <div class="w-screen mx-auto px-4 flex justify-evenly items-center text-white">
       <!-- Logo and Title -->
       <div class="flex items-center space-x-3">
         <span class="text-sm">
@@ -89,6 +92,7 @@
       </div>
     </div>
   </footer>
+</main>
   
   <!-- Font Awesome Script -->
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>

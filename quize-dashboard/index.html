@@ -12,15 +12,17 @@
 
 <body class="bg-white text-gray-800">
     <!-- Navbar -->
+    <main class="container max-w-full">
+
     <header>
         <nav class="bg-white shadow-md shadow-gray-300 h-20">
             <div class="max-w-screen-xl flex items-center justify-between mx-auto px-4 h-full">
                 <!-- Logo and Title -->
-                <a href="#" class="flex items-center space-x-3">
+                <a href="#" class="flex items-center">
                     <img src="../assets/logo1.png" width="70px" class="mt-2" alt="Logo" />
                     <span
                         class=" animate__animated animate__flipInY self-center lg:text-3xl text-2xl font-bold whitespace-nowrap text-[#FF533A]">
-                        Quiz <span class="text-[#00A97F]">Spark</span>
+                        Quiz<span class="text-[#00A97F]">Spark</span>
                     </span>
                 </a>
                 <!-- Enroll Button -->
@@ -43,7 +45,7 @@
                     Here you can track your progress, view your quiz results, and explore new quizzes.
                 </p>
                 <!-- Stats -->
-                <div class="grid grid-cols-2 gap-6 mt-8">
+                <div class="grid lg:grid-cols-2 grid-cols-1 gap-6 mt-8">
                     <div
                         class="bg-[#00A97F] text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 hover:bg-[#FF533A]">
                         <h3 class="text-2xl">Completed Quizzes</h3>
@@ -113,6 +115,7 @@
             </button>
         </div>
     </div>
+</main>
 
     
     <script src="app.js"></script>

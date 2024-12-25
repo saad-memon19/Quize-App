@@ -1,3 +1,12 @@
+// Check if the user is already logged in
+var loginUserName = JSON.parse(localStorage.getItem("currentLoggedinUser"));
+
+if (loginUserName) {
+    // If user is logged in, redirect to dashboard
+    location.href = "../quize-dashboard/index.html";
+}
+
+
 const loginForm = document.getElementById('loginForm');
 const signupForm = document.getElementById('signupForm');
 const loginTab = document.getElementById('loginTab');
@@ -24,25 +33,46 @@ function showSignup() {
 
 
 
-
 function signup(e) {
-    e.preventDefault();
+    e.preventDefault(); // Page reload ko roke
+
     const userName = document.getElementById("signupName").value.trim();
     const email = document.getElementById("signupEmail").value.trim();
     const password = document.getElementById("signupPassword").value.trim();
 
     if (!userName || !email || !password) {
-        swal("Error", "Please fill out all fields!", "error");
+        swal("Error", "Saray fields bharna zaroori hain!", "error");
         return;
     }
 
-    const userRecord = { name: userName, email: email, password: password };
-    const userData = JSON.parse(localStorage.getItem("userData")) || [];
-    userData.push(userRecord);
+    // Unique user ID generate karna
+    let userIdCounter = localStorage.getItem("userIdCounter");
+    if (!userIdCounter) {
+        userIdCounter = 1000; // Start ID from 1000
+    }
+    const newUserId = parseInt(userIdCounter) + 1;
+    localStorage.setItem("userIdCounter", newUserId);
 
+    // Naya user object
+    const userRecord = {
+        id: newUserId,
+        name: userName,
+        email: email,
+        password: password,
+        quizData: [] // Quiz data ka empty array initialize
+    };
+
+    // LocalStorage me data save karna
+    const userData = JSON.parse(localStorage.getItem("userData")) || [];
+    const existingUser = userData.find(user => user.email === email);
+    if (existingUser) {
+        swal("Error", "Yeh email already register hai!", "error");
+        return;
+    }
+    userData.push(userRecord);
     localStorage.setItem("userData", JSON.stringify(userData));
 
-    swal("Success", `Signup successful, ${userName}!`, "success");
+    swal("Success", `Signup successful, ${userName}! Your User ID: ${newUserId}`, "success");
 
     document.getElementById("signupName").value = "";
     document.getElementById("signupEmail").value = "";
@@ -51,11 +81,12 @@ function signup(e) {
 
 function login(e) {
     e.preventDefault();
+
     const email = document.getElementById("loginEmail").value.trim();
     const password = document.getElementById("loginPassword").value.trim();
 
     if (!email || !password) {
-        swal("Error", "Please fill out all fields!", "error");
+        swal("Error", "Saray fields bharna zaroori hain!", "error");
         return;
     }
 
@@ -63,12 +94,12 @@ function login(e) {
     const userFound = userData.find(user => user.email === email && user.password === password);
 
     if (userFound) {
-        swal("Success", "Login successful!", "success").then(() => {
-            window.location = "../quize-dashboard/index.html";
-        });
         localStorage.setItem("currentLoggedinUser", JSON.stringify(userFound));
+        swal("Success", `Welcome back, ${userFound.name}!`, "success").then(() => {
+            window.location = "../quize-dashboard/index.html"; // Dashboard redirect
+        });
     } else {
-        swal("Error", "User not found. Check your email and password!", "error");
+        swal("Error", "Invalid email ya password!", "error");
     }
 
     document.getElementById("loginEmail").value = "";

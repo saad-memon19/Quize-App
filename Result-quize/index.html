@@ -34,42 +34,15 @@
         </nav>
     </header>
 
-
-    <section>
-        <div class="container mx-auto mt-12" id="startquizsection">
-            <div
-                class="bg-white p-8 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 animate__animated animate__fadeInUp">
-                <!-- Timer and Question -->
-                <div class="flex justify-between items-center mb-6">
-                    <!-- Question Number -->
-                    <h2 class="text-2xl font-bold text-gray-800" id="question-number"></h2>
-                    <!-- Timer -->
-                    <div class="bg-gray-200 px-4 py-2 rounded-lg shadow flex items-center space-x-2">
-                        <span class="text-gray-700 font-semibold">Time Left:</span>
-                        <span id="timer" class="text-[#FF533A] font-bold text-xl">60s</span>
-                    </div>
-                </div>
-
-                <!-- Question -->
-                <div class="bg-gray-100 p-6 rounded-lg mb-6">
-                    <h3 class="text-xl font-semibold text-gray-800" id="question-text"></h3>
-                </div>
-
-                <!-- Options -->
-                <div class="space-y-4" id="options-container"></div>
-
-                <!-- Next Button -->
-                <div class="mt-8 text-right">
-                    <button
-                        class="bg-[#00A97F] hover:bg-[#FF533A] text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300"
-                        onclick="goToNextQuestion()">
-                        Next
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    <div class="container text-center">
+        <h1 class="text-3xl font-bold" id="result-title">Quiz Result</h1>
+        <p class="text-xl" id="score-display"></p>
+        <p class="text-xl" id="percentage-display"></p>
+        <button class="bg-[#00A97F] text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300"
+            onclick="restartQuiz()">
+            Restart Quiz
+        </button>
+    </div>
     <script src="./app.js"></script>
 </body>
 

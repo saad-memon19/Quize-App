@@ -34,8 +34,6 @@ let questions = [
 
 let questionIndex = 0;
 let score = 0;
-let timeRemaining = 60;
-let timer;
 
 // DOM Elements
 const questionNumberElement = document.getElementById("question-number");
@@ -58,7 +56,10 @@ function loadQuestion() {
         button.textContent = option;
         button.className =
             "w-full text-left bg-gray-200 hover:bg-[#00A97F] hover:text-white transition-all duration-700 px-4 py-3 rounded-lg text-gray-800 font-medium";
+
+        // Allow user to select and change answer
         button.onclick = () => selectOption(button, currentQuestion.answer);
+
         optionsContainer.appendChild(button);
     });
 }
@@ -69,19 +70,35 @@ function selectOption(button, correctAnswer) {
     let allOptions = document.querySelectorAll("#options-container button");
     allOptions.forEach((btn) => btn.classList.remove("active"));
 
-    // Add active class to selected option
+    // Add active class to the selected option
     button.classList.add("active");
 
-    // Check if the selected answer is correct
-    if (button.textContent === correctAnswer) {
-        score += 10; // Increase score by 10 points for correct answer
-    }
+    // Save the selected option as a temporary value (for changing answers)
+    button.parentNode.dataset.selectedOption = button.textContent;
 }
 
 // Move to the next question or end the quiz
 function goToNextQuestion() {
-    questionIndex++;
+    // Check the selected option
+    const selectedOption = document.querySelector("#options-container .active");
+    if (!selectedOption) {
+        alert("Please select an answer before proceeding.");
+        return;
+    }
 
+    // Get the selected answer
+    const selectedAnswer = selectedOption.textContent;
+
+    // Get the correct answer
+    const correctAnswer = questions[questionIndex].answer;
+
+    // Check if the selected answer is correct
+    if (selectedAnswer === correctAnswer) {
+        score += 10; // Add score for correct answer
+    }
+
+    // Move to the next question or end the quiz
+    questionIndex++;
     if (questionIndex < questions.length) {
         loadQuestion(); // Load the next question
     } else {
@@ -89,51 +106,53 @@ function goToNextQuestion() {
     }
 }
 
-// Start timer
-function startTimer() {
-    timer = setInterval(() => {
-        if (timeRemaining > 0) {
-            timeRemaining--;
-            timerElement.textContent = `${timeRemaining}s`;
-        } else {
-            clearInterval(timer);
-            endQuiz(); // End the quiz if time runs out
-        }
-    }, 1000);
-}
-
+// End Quiz Logic
 function endQuiz() {
-    clearInterval(timer);
+    clearInterval(timer); // Stop the timer
 
+    // Fetch the current user
     const currentUser = JSON.parse(localStorage.getItem("currentLoggedinUser"));
 
     if (!currentUser) {
-        console.error("User data not found.");
+        alert("No user logged in. Redirecting to login.");
+        window.location.href = "../login/index.html";
         return;
     }
 
+    // Calculate percentage
     let percentage = (score / (questions.length * 10)) * 100;
 
+    // Add the quiz result to the user's quiz data
     if (!currentUser.quizData) {
         currentUser.quizData = [];
     }
     currentUser.quizData.push({
-        quizName: "HTML Quiz", // Quiz ka naam
+        quizName: "HTML Quiz",
         score: score,
         percentage: Math.round(percentage),
         totalQuestions: questions.length,
-        date: new Date().toLocaleString() // Timestamp
+        date: new Date().toLocaleString(),
     });
 
-    const userData = JSON.parse(localStorage.getItem("userData")) || [];
-    const userIndex = userData.findIndex(user => user.id === currentUser.id);
-    if (userIndex !== -1) {
-        userData[userIndex] = currentUser; // Update global user data
-        localStorage.setItem("userData", JSON.stringify(userData));
-    }
-
+    // Save the updated user data back to localStorage
     localStorage.setItem("currentLoggedinUser", JSON.stringify(currentUser));
+
+    // Redirect to result page
     window.location.href = "../Result-quize/index.html";
+}
+
+// Start timer
+function startTimer() {
+    let timeRemaining = 60; // Set total time for the quiz
+    const timerInterval = setInterval(() => {
+        if (timeRemaining > 0) {
+            timeRemaining--;
+            timerElement.textContent = `${timeRemaining}s`;
+        } else {
+            clearInterval(timerInterval);
+            endQuiz(); // End the quiz if time runs out
+        }
+    }, 1000);
 }
 
 // Initialize the quiz

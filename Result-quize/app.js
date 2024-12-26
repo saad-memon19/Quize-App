@@ -11,8 +11,8 @@ if (currentUser && currentUser.quizData && currentUser.quizData.length > 0) {
     document.getElementById("percentage-display").textContent = "No percentage available.";
 }
 
-function backDashboard(){
-    window.location = "../quize-dashboard/index.html"
+function backDashboard() {
+    window.location = "../quize-dashboard/index.html";
 }
 
 function restartQuiz() {

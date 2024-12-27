@@ -10,7 +10,6 @@ if (currentUser && currentUser.quizData && currentUser.quizData.length > 0) {
     document.getElementById("score-display").textContent = "No score available.";
     document.getElementById("percentage-display").textContent = "No percentage available.";
 }
-
 function backDashboard() {
     window.location = "../quize-dashboard/index.html";
 }
@@ -18,3 +17,4 @@ function backDashboard() {
 function restartQuiz() {
     window.location.href = "../start-quize/index.html"; // Redirect to quiz start page
 }
+

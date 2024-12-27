@@ -6,7 +6,6 @@ if (loginUserName) {
     location.href = "../quize-dashboard/index.html";
 }
 
-
 const loginForm = document.getElementById('loginForm');
 const signupForm = document.getElementById('signupForm');
 const loginTab = document.getElementById('loginTab');
@@ -30,8 +29,6 @@ function showSignup() {
     loginTab.classList.remove('text-gray-800', 'border-[#FF533A]');
     signupTab.classList.remove('border-hidden');
 }
-
-
 
 function signup(e) {
     e.preventDefault(); // Page reload ko roke
@@ -81,25 +78,26 @@ function signup(e) {
 
 function login(e) {
     e.preventDefault();
-
     const email = document.getElementById("loginEmail").value.trim();
     const password = document.getElementById("loginPassword").value.trim();
 
     if (!email || !password) {
-        swal("Error", "Saray fields bharna zaroori hain!", "error");
+        swal("Error", "Please fill out all fields!", "error");
         return;
     }
 
+    // Fetch all user data
     const userData = JSON.parse(localStorage.getItem("userData")) || [];
     const userFound = userData.find(user => user.email === email && user.password === password);
 
     if (userFound) {
+        // Save the current logged-in user's ID in localStorage
         localStorage.setItem("currentLoggedinUser", JSON.stringify(userFound));
         swal("Success", `Welcome back, ${userFound.name}!`, "success").then(() => {
-            window.location = "../quize-dashboard/index.html"; // Dashboard redirect
+            window.location = "../quize-dashboard/index.html"; // Redirect to dashboard
         });
     } else {
-        swal("Error", "Invalid email ya password!", "error");
+        swal("Error", "User not found. Check your email and password!", "error");
     }
 
     document.getElementById("loginEmail").value = "";

@@ -2,3 +2,58 @@
     background-color: #00A97F !important;
     color: white !important;
 }
+
+.certificate-border {
+    border: 8px solid #00A97F;
+    padding: 20px;
+    border-radius: 15px;
+    position: relative;
+    background: #fff;
+}
+.certificate-seal {
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    background: #FF533A;
+    color: #fff;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.certificate-content {
+    text-align: center;
+    padding: 20px;
+}
+.certificate-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #2d3748;
+}
+.certificate-subtitle {
+    font-size: 1.5rem;
+    color: #4a5568;
+    margin-bottom: 20px;
+}
+.certificate-details {
+    font-size: 1.125rem;
+    color: #4a5568;
+    margin-bottom: 10px;
+}
+.certificate-button {
+    background-color: #00A97F;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+.certificate-button:hover {
+    background-color: #FF533A;
+}

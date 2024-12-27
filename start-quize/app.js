@@ -11,26 +11,42 @@ function backDashboard() {
 
 let questions = [
     {
-        question: "What is the capital of France?",
-        options: ["Paris", "London", "Berlin", "Madrid"],
-        answer: "Paris",
-    },
-    {
-        question: "What is 2 + 2?",
-        options: ["3", "4", "5", "6"],
-        answer: "4",
-    },
-    {
-        question: "What is the full form of RAM?",
+        question: "Q1): What does HTML stand for?",
         options: [
-            "Random Access Memory",
-            "Run Accept Memory",
-            "Read Aceapt Memory",
-            "None of these",
+            "HyperText Markup Language",
+            "Home Tool Markup Language",
+            "Hyperlinks and Text Markup Language",
+            "HyperTool Management Language"
         ],
-        answer: "Random Access Memory",
+        answer: "HyperText Markup Language",
+    },
+    {
+        question: "Q2): What is the correct HTML element for the largest heading?",
+        options: ["<h1>", "<heading>", "<h6>", "<head>"],
+        answer: "<h1>",
+    },
+    {
+        question: "Q3): Which HTML element is used to create a hyperlink?",
+        options: ["<link>", "<a>", "<href>", "<url>"],
+        answer: "<a>",
+    },
+    {
+        question: "Q4): What is the correct way to add a background color in HTML?",
+        options: [
+            '<body style="background-color:yellow;">',
+            '<background>yellow</background>',
+            '<body bg="yellow">',
+            '<body color="yellow">'
+        ],
+        answer: '<body style="background-color:yellow;">',
+    },
+    {
+        question: "Q5): Which HTML tag is used to define an unordered list?",
+        options: ["<ul>", "<ol>", "<li>", "<list>"],
+        answer: "<ul>",
     },
 ];
+
 
 let questionIndex = 0;
 let score = 0;
@@ -106,38 +122,37 @@ function goToNextQuestion() {
     }
 }
 
-// End Quiz Logic
 function endQuiz() {
-    clearInterval(timer); // Stop the timer
+    clearInterval(timer);
 
-    // Fetch the current user
     const currentUser = JSON.parse(localStorage.getItem("currentLoggedinUser"));
 
     if (!currentUser) {
-        alert("No user logged in. Redirecting to login.");
-        window.location.href = "../login/index.html";
+        console.error("User data not found.");
         return;
     }
 
-    // Calculate percentage
     let percentage = (score / (questions.length * 10)) * 100;
 
-    // Add the quiz result to the user's quiz data
     if (!currentUser.quizData) {
         currentUser.quizData = [];
     }
     currentUser.quizData.push({
-        quizName: "HTML Quiz",
+        quizName: "HTML Quiz", // Quiz ka naam
         score: score,
         percentage: Math.round(percentage),
         totalQuestions: questions.length,
-        date: new Date().toLocaleString(),
+        date: new Date().toLocaleString() // Timestamp
     });
 
-    // Save the updated user data back to localStorage
-    localStorage.setItem("currentLoggedinUser", JSON.stringify(currentUser));
+    const userData = JSON.parse(localStorage.getItem("userData")) || [];
+    const userIndex = userData.findIndex(user => user.id === currentUser.id);
+    if (userIndex !== -1) {
+        userData[userIndex] = currentUser; // Update global user data
+        localStorage.setItem("userData", JSON.stringify(userData));
+    }
 
-    // Redirect to result page
+    localStorage.setItem("currentLoggedinUser", JSON.stringify(currentUser));
     window.location.href = "../Result-quize/index.html";
 }
 

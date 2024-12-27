@@ -34,8 +34,7 @@ function quizPage() {
 const currentUser = JSON.parse(localStorage.getItem("currentLoggedinUser"));
 
 if (!currentUser) {
-    alert("No user is logged in. Please log in first.");
-    window.location.href = "../login/index.html"; // Redirect to login page
+    window.location.href = "../student-enroll/index.html"; // Redirect to login page
 } else {
     document.getElementById("welcome-message").textContent = `Welcome to Quiz Dashboard, ${currentUser.name}!`;
 

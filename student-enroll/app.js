@@ -30,10 +30,24 @@ function showSignup() {
     signupTab.classList.remove('border-hidden');
 }
 
+document.addEventListener('keydown', function (event) {
+    if (event.key === 'Enter') { 
+      // Agar Enter key press hui hai
+      if (document.getElementById('signup-form').style.display !== 'none') {
+        signup(); 
+        // Agar Signup form visible hai, to signup function call hoga
+      } else if (document.getElementById('login-form').style.display !== 'none') {
+        login(); 
+        // Agar Login form visible hai, to login function call hoga
+      }
+    }
+  });
+  
+
 function signup(e) {
     e.preventDefault(); // Page reload ko roke
 
-    const userName = document.getElementById("signupName").value.trim();
+    const userName = document.getElementById("signupName").value.trim().toLowerCase();
     const email = document.getElementById("signupEmail").value.trim();
     const password = document.getElementById("signupPassword").value.trim();
 
@@ -63,7 +77,7 @@ function signup(e) {
     const userData = JSON.parse(localStorage.getItem("userData")) || [];
     const existingUser = userData.find(user => user.email === email);
     if (existingUser) {
-        swal("Error", "Yeh email already register hai!", "error");
+        swal("Error", "Email Already Register!", "error");
         return;
     }
     userData.push(userRecord);
@@ -74,11 +88,13 @@ function signup(e) {
     document.getElementById("signupName").value = "";
     document.getElementById("signupEmail").value = "";
     document.getElementById("signupPassword").value = "";
+
+    window.location = "../student-enroll/index.html"
 }
 
 function login(e) {
     e.preventDefault();
-    const email = document.getElementById("loginEmail").value.trim();
+    const email = document.getElementById("loginEmail").value.trim().toLowerCase();
     const password = document.getElementById("loginPassword").value.trim();
 
     if (!email || !password) {

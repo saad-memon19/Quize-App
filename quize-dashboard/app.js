@@ -36,7 +36,7 @@ const currentUser = JSON.parse(localStorage.getItem("currentLoggedinUser"));
 if (!currentUser) {
     window.location.href = "../student-enroll/index.html"; // Redirect to login page
 } else {
-    document.getElementById("welcome-message").textContent = `Welcome to Quiz Dashboard, ${currentUser.name}!`;
+    document.getElementById("welcome-message").textContent = `Welcome to Quiz Dashboard, ${currentUser.name}👋!`;
 
     const quizData = currentUser.quizData || [];
 

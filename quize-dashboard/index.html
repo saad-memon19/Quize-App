@@ -12,31 +12,42 @@
 
 <body class="bg-white text-gray-800">
     <!-- Navbar -->
-    <main>
+    <main class="container max-w-full>
 
         <header>
-            <nav class="bg-white shadow-md shadow-gray-300 h-20">
-                <div class="max-w-screen-xl flex items-center justify-between mx-auto px-4 h-full">
-                    <!-- Logo and Title -->
-                    <a href="#" class="flex items-center">
-                        <img src="../assets/logo1.png" width="70px" class="mt-2" alt="Logo" />
-                        <span
-                            class=" animate__animated animate__flipInY self-center lg:text-3xl text-2xl font-bold whitespace-nowrap text-[#FF533A]">
-                            Quiz<span class="text-[#00A97F]">Spark</span>
-                        </span>
-                    </a>
-                    <!-- Enroll Button -->
-                    <button onclick="logout()" type="button"
-                        class="text-white bg-[#00A97F] hover:bg-[#FF533A] focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 shadow-lg transition duration-300">
-                        Logout
-                    </button>
-                </div>
-            </nav>
+           <nav class="bg-white shadow-md shadow-gray-300 h-20">
+          <div
+            class="max-w-screen-xl flex items-center justify-between mx-auto lg:px-0 px-4 h-full"
+          >
+            <!-- Logo and Title -->
+            <a href="#" class="flex items-center">
+              <img
+                src="../assets/logo1.png"
+                width="70px"
+                class="mt-2"
+                alt="Logo"
+              />
+              <span
+                class="animate__animated animate__flipInY self-center lg:text-3xl text-2xl font-bold whitespace-nowrap text-[#FF533A]"
+              >
+                Quiz<span class="text-[#00A97F]">Spark</span>
+              </span>
+            </a>
+            <!-- Enroll Button -->
+            <button
+              onclick="logout()"
+              type="button"
+              class="text-white bg-[#00A97F] hover:bg-[#FF533A] focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 shadow-lg transition duration-300"
+            >
+              Logout
+            </button>
+          </div>
+        </nav>
         </header>
 
         <!-- Dashboard -->
-        <div class="container mx-auto mt-12">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 ">
+        <div class="container mx-auto mt-12 max-w-screen-xl">
+        <div class="grid grid-cols-1 lg:grid-cols-1 gap-10">
                 <!-- Left Section: Overview -->
                 <div
                     class="bg-white p-6 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 animate__animated animate__fadeInLeft">
@@ -47,12 +58,12 @@
                     <!-- Stats -->
                     <div class="grid lg:grid-cols-2 grid-cols-1 gap-6 mt-8">
                         <div
-                            class="bg-[#00A97F] text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 hover:bg-[#FF533A]">
+                            class="bg-[#00A97F] text-white p-10 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 hover:bg-[#FF533A]">
                             <h3 class="text-2xl">Completed Quizzes</h3>
                             <p class="mt-2 text-3xl font-bold" id="completed-quizzes">0</p>
                         </div>
                         <div
-                            class="bg-[#FF533A] text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 hover:bg-[#00A97F]">
+                            class="bg-[#FF533A] text-white p-10 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 hover:bg-[#00A97F]">
                             <h3 class="text-2xl">In Progress</h3>
                             <p class="mt-2 text-3xl font-bold" id="in-progress-quizzes">0</p>
                         </div>

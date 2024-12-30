@@ -156,19 +156,26 @@ function endQuiz() {
     window.location.href = "../Result-quize/index.html";
 }
 
-// Start timer
 function startTimer() {
-    let timeRemaining = 60; // Set total time for the quiz
+    let timeRemaining = 60; // Total timer duration
+    const timerElement = document.getElementById('timer'); // Select the HTML element to update timer
+
     const timerInterval = setInterval(() => {
         if (timeRemaining > 0) {
-            timeRemaining--;
-            timerElement.textContent = `${timeRemaining}s`;
+            timeRemaining--; // Reduce time by 1 every second
+            
+            if (timeRemaining <= 20) { 
+                timerElement.style.color = '#FF533A'; // Change text color to red when <= 20 seconds
+            }
+            
+            timerElement.textContent = `${timeRemaining}s`; // Update the timer display
         } else {
-            clearInterval(timerInterval);
-            endQuiz(); // End the quiz if time runs out
+            clearInterval(timerInterval); // Stop the timer when time runs out
+            endQuiz(); // Call the endQuiz function
         }
-    }, 1000);
+    }, 1000); // Run this function every 1000 milliseconds (1 second)
 }
+
 
 // Initialize the quiz
 loadQuestion();

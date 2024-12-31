@@ -7,8 +7,10 @@ function openQuiz(title) {
     You will have 1 minute to complete it.
     Stay focused, think quickly, and aim for the best score.
     Good luck!`;
-        document.getElementById("quizModal").classList.remove("hidden");
+    
+    document.getElementById("quizModal").classList.remove("hidden");
 }
+
 
 // Close Modal
 function closeModal() {
@@ -30,6 +32,17 @@ function quizPage() {
 
     window.location = "../start-quize/index.html"
 }
+
+
+
+function cssQuiz() {
+    window.location = "../start-quize/css-quiz/index.html"
+}
+
+function javascriptQuiz() {
+    window.location = "../start-quize/javascript-quiz/index.html"
+}
+
 
 const currentUser = JSON.parse(localStorage.getItem("currentLoggedinUser"));
 

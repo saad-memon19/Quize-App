@@ -31,18 +31,18 @@ function showSignup() {
 }
 
 document.addEventListener('keydown', function (event) {
-    if (event.key === 'Enter') { 
-      // Agar Enter key press hui hai
-      if (document.getElementById('signup-form').style.display !== 'none') {
-        signup(); 
-        // Agar Signup form visible hai, to signup function call hoga
-      } else if (document.getElementById('login-form').style.display !== 'none') {
-        login(); 
-        // Agar Login form visible hai, to login function call hoga
-      }
+    if (event.key === 'Enter') {
+        // Agar Enter key press hui hai
+        if (document.getElementById('signup-form').style.display !== 'none') {
+            signup();
+            // Agar Signup form visible hai, to signup function call hoga
+        } else if (document.getElementById('login-form').style.display !== 'none') {
+            login();
+            // Agar Login form visible hai, to login function call hoga
+        }
     }
-  });
-  
+});
+
 
 function signup(e) {
     e.preventDefault(); // Page reload ko roke

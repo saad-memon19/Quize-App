@@ -162,6 +162,7 @@ function startTimer() {
 
     const timerInterval = setInterval(() => {
         if (timeRemaining > 0) {
+<<<<<<< HEAD
             timeRemaining--; // Reduce time by 1 every second
             
             if (timeRemaining <= 20) { 
@@ -169,6 +170,16 @@ function startTimer() {
             }
             
             timerElement.textContent = `${timeRemaining}s`; // Update the timer display
+=======
+            timeRemaining--;
+
+            // Change the color if seconds are 20 or less
+            if (timeRemaining <= 20) {
+                timerElement.style.color = '#FF533A';
+            }
+
+            timerElement.textContent = `${timeRemaining}s`;
+>>>>>>> 9126002 (50% page change)
         } else {
             clearInterval(timerInterval); // Stop the timer when time runs out
             endQuiz(); // Call the endQuiz function

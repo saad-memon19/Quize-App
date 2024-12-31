@@ -1,26 +1,3 @@
-// // Open Modal
-// function openQuiz(title) {
-//     document.getElementById("modalQuizTitle").textContent = title;
-//     document.getElementById("modalQuizDescription").textContent = `Welcome to ${title}!
-//     Get ready to test your skills with this exciting quiz.
-//     This quiz consists of 5 questions.
-//     You will have 1 minute to complete it.
-//     Stay focused, think quickly, and aim for the best score.
-//     Good luck!`;
-    
-//     document.getElementById("quizModal").classList.remove("hidden");
-// }
-
-
-// // Close Modal
-// function closeModal() {
-//     document.getElementById("quizModal").classList.add("hidden");
-// }
-
-// // Scroll to Quiz Section and Show It
-// function cssPage() {
-//     window.location = "../css-quiz/index.html"
-// }
 function backDashboard() {
     window.location = "/quize-dashboard/index.html"
 }
@@ -28,39 +5,44 @@ function backDashboard() {
 
 let questions = [
     {
-        question: "Q1): What does CSS stand for?",
+        question: "Q1): What is the correct syntax for referring to an external script in JavaScript?",
         options: [
-            "Cascading Style Sheets",
-            "Creative Style System",
-            "Computer Style Sheets",
-            "Colorful Style Syntax"
+            '<script src="file.js">',
+            '<script href="file.js">',
+            '<script ref="file.js">',
+            '<script link="file.js">'
         ],
-        answer: "Cascading Style Sheets",
+        answer: '<script src="file.js">',
     },
     {
-        question: "Q2): Which HTML tag is used to define an internal style sheet?",
-        options: ["<css>", "<script>", "<style>", "<design>"],
-        answer: "<style>",
+        question: "Q2): Inside which HTML element do we put the JavaScript?",
+        options: ["<js>", "<javascript>", "<script>", "<code>"],
+        answer: "<script>",
     },
     {
-        question: "Q3): Which property is used to change the background color in CSS?",
-        options: ["color", "bgcolor", "background-color", "background"],
-        answer: "background-color",
-    },
-    {
-        question: "Q4): What is the correct syntax for adding a margin in CSS?",
+        question: "Q3): How do you write 'Hello World' in an alert box in JavaScript?",
         options: [
-            "margin: 10px;",
-            "margin-width: 10px;",
-            "margin-size: 10px;",
-            "margin-padding: 10px;"
+            'alert("Hello World");',
+            'msg("Hello World");',
+            'prompt("Hello World");',
+            'print("Hello World");'
         ],
-        answer: "margin: 10px;",
+        answer: 'alert("Hello World");',
     },
     {
-        question: "Q5): Which CSS property is used to make the text bold?",
-        options: ["font-weight", "text-style", "font-bold", "bold"],
-        answer: "font-weight",
+        question: "Q4): How do you declare a JavaScript variable?",
+        options: [
+            "var myVar;",
+            "variable myVar;",
+            "v myVar;",
+            "declare myVar;"
+        ],
+        answer: "var myVar;",
+    },
+    {
+        question: "Q5): Which operator is used to assign a value to a variable in JavaScript?",
+        options: ["=", "==", "===", "=>"],
+        answer: "=",
     },
 ];
 
@@ -159,7 +141,7 @@ function endQuiz() {
         currentUser.quizData = [];
     }
     currentUser.quizData.push({
-        quizName: "CSS Quiz",
+        quizName: "Javascript Quiz",
         score: score,
         percentage: Math.round(percentage),
         totalQuestions: questions.length,
@@ -192,6 +174,7 @@ function startTimer() {
         }
     }, 1000);
 }
+
 
 // Initialize the quiz
 loadQuestion();

@@ -71,9 +71,26 @@ function backDashboard() {
     window.location.href = "../quize-dashboard/index.html";
 }
 
+
+// Restart Quiz Functionality
 function restartQuiz() {
-    window.location.href = "../start-quize/index.html";
+    const currentUser = JSON.parse(localStorage.getItem("currentLoggedinUser"));
+
+    if (currentUser && currentUser.quizData?.length > 0) {
+        const latestQuiz = currentUser.quizData[currentUser.quizData.length - 1];
+
+        let quizUrl = "../start-quize/index.html";
+
+        if (latestQuiz.quizName === "CSS Quiz") {
+            quizUrl = "../start-quize/css-quiz/index.html";
+        } else if (latestQuiz.quizName === "Javascript Quiz") {
+            quizUrl = "../start-quize/javascript-quiz/index.html";
+        }
+
+        window.location.href = quizUrl;
+    }
 }
+
 
 
 

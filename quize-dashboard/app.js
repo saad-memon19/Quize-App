@@ -1,4 +1,3 @@
-// Open Modal
 function openQuiz(title) {
     document.getElementById("modalQuizTitle").textContent = title;
     document.getElementById("modalQuizDescription").textContent = `Welcome to ${title}!
@@ -7,42 +6,29 @@ function openQuiz(title) {
     You will have 1 minute to complete it.
     Stay focused, think quickly, and aim for the best score.
     Good luck!`;
-    
+
     document.getElementById("quizModal").classList.remove("hidden");
 }
 
-
-// Close Modal
 function closeModal() {
     document.getElementById("quizModal").classList.add("hidden");
 }
 
-// Scroll to Quiz Section and Show It
 function quizPage() {
-    // const quizSection = document.getElementById("startquizsection");
+    const title = document.getElementById("modalQuizTitle").textContent;
+    let url = "";
 
-    // Show the Quiz Section
-    // quizSection.classList.remove("hidden");
+    if (title === "Html Quiz - Level 1") {
+        url = "../start-quize/index.html";
+    } else if (title === "Css Quiz - Level 1") {
+        url = "../start-quize/css-quiz/index.html";
+    } else if (title === "Javascript Quiz - Level 1") {
+        url = "../start-quize/javascript-quiz/index.html";
+    }
 
-    // Scroll to the Quiz Section
-    // quizSection.scrollIntoView({ behavior: "smooth" });
-
-    // Hide the Modal
-    // document.getElementById("quizModal").classList.add("hidden");
-
-    window.location = "../start-quize/index.html"
+    window.location = url;
+    closeModal();
 }
-
-
-
-function cssQuiz() {
-    window.location = "../start-quize/css-quiz/index.html"
-}
-
-function javascriptQuiz() {
-    window.location = "../start-quize/javascript-quiz/index.html"
-}
-
 
 const currentUser = JSON.parse(localStorage.getItem("currentLoggedinUser"));
 
@@ -53,7 +39,7 @@ if (!currentUser) {
 
     const quizData = currentUser.quizData || [];
 
-    const totalQuizzes = 5;
+    const totalQuizzes = 3;
     const completedQuizzes = quizData.length;
     const inProgressQuizzes = totalQuizzes - completedQuizzes;
 

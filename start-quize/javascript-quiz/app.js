@@ -120,59 +120,59 @@ function goToNextQuestion() {
     }
 }
 
-// End Quiz Logic
 function endQuiz() {
-    clearInterval(timer); // Stop the timer
+    clearInterval(timer);
 
-    // Fetch the current user
     const currentUser = JSON.parse(localStorage.getItem("currentLoggedinUser"));
 
     if (!currentUser) {
-        alert("No user logged in. Redirecting to login.");
-        window.location.href = "../login/index.html";
+        console.error("User data not found.");
         return;
     }
 
-    // Calculate percentage
     let percentage = (score / (questions.length * 10)) * 100;
 
-    // Add the quiz result to the user's quiz data
     if (!currentUser.quizData) {
         currentUser.quizData = [];
     }
     currentUser.quizData.push({
-        quizName: "Javascript Quiz",
+        quizName: "Javascript Quiz", // Quiz ka naam
         score: score,
         percentage: Math.round(percentage),
         totalQuestions: questions.length,
-        date: new Date().toLocaleString(),
+        date: new Date().toLocaleString() // Timestamp
     });
 
-    // Save the updated user data back to localStorage
-    localStorage.setItem("currentLoggedinUser", JSON.stringify(currentUser));
+    const userData = JSON.parse(localStorage.getItem("userData")) || [];
+    const userIndex = userData.findIndex(user => user.id === currentUser.id);
+    if (userIndex !== -1) {
+        userData[userIndex] = currentUser; // Update global user data
+        localStorage.setItem("userData", JSON.stringify(userData));
+    }
 
-    // Redirect to result page
+    localStorage.setItem("currentLoggedinUser", JSON.stringify(currentUser));
     window.location.href = "/Result-quize/index.html";
 }
 
-// Start timer
 function startTimer() {
-    let timeRemaining = 60; // Set total time for the quiz
+    let timeRemaining = 60; // Total timer duration
+    const timerElement = document.getElementById('timer'); // Select the HTML element to update timer
+
     const timerInterval = setInterval(() => {
         if (timeRemaining > 0) {
-            timeRemaining--;
 
-            // Change the color if seconds are 20 or less
-            if (timeRemaining <= 20) {
-                timerElement.style.color = '#FF533A';
+            timeRemaining--; // Reduce time by 1 every second
+            
+            if (timeRemaining <= 20) { 
+                timerElement.style.color = '#FF533A'; // Change text color to red when <= 20 seconds
             }
-
-            timerElement.textContent = `${timeRemaining}s`;
+            
+            timerElement.textContent = `${timeRemaining}s`; // Update the timer display
         } else {
-            clearInterval(timerInterval);
-            endQuiz(); // End the quiz if time runs out
+            clearInterval(timerInterval); // Stop the timer when time runs out
+            endQuiz(); // Call the endQuiz function
         }
-    }, 1000);
+    }, 1000); // Run this function every 1000 milliseconds (1 second)
 }
 
 
